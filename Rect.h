@@ -13,6 +13,7 @@ protected:
 	void GetAll(double *coord)const;
 	friend Rect BoundingRect(Rect, Rect);
 	friend Rect BoundingRect2(const Rect&, const Rect&);
+	Point GetCentr();
 	friend class Circle;
 public:
 	explicit Rect(double l = 0, double r = 0, double t = 0, double b = 0, colour col = colour::BLANC);
@@ -35,8 +36,9 @@ public:
 	void Inflate(double delta = 1);
 	void SetAll(double l = 0, double r = 0, double t = 0, double b = 0);
 	void GetAll(double& l, double& r, double& t, double& b)const;
+	
 	virtual double GetArea();
-
+	double OffsetZero();
 	void Rect::WhereAmI();
 	
 	friend std::ostream& operator<<(std::ostream&, const  Rect&);

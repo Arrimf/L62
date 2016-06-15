@@ -29,6 +29,7 @@ public:
 	void Circle::WhereAmI();
 	void Inflate(double = 1);
 	virtual double GetArea();
+	virtual double OffsetZero();
 	//double GetArea2();
 	friend std::ostream& operator<<(std::ostream&, const  Circle&);
 

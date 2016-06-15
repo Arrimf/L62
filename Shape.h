@@ -29,9 +29,9 @@ class Shape{
 	
 	virtual void WhereAmI() = 0;
 	virtual double GetArea() = 0;
+	virtual double OffsetZero() = 0;
 	friend std::ostream& operator<<(std::ostream& , const colour&);
 	
-
 };
 
 

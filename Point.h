@@ -15,7 +15,8 @@ class Point {
 	friend Point operator+ (const double, const Point&);
 
 public:
-
+	friend double Distance(const Point&, const Point&);
+	friend double OffsetZ(const Point&);
 	explicit Point(double = 0, double = 0);
 
 	bool operator==(const Point&);

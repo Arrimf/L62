@@ -15,7 +15,7 @@ Circle::Circle(double x, double y, double rad, colour col):m_centr(x, y),Shape(c
 	m_rad = rad;
 }
 Circle::Circle(const Point& centr, const Point& dot, colour col): m_centr(centr), Shape(col) {
-	m_rad = sqrt((dot.m_x - centr.m_x)*(dot.m_x - centr.m_x) + (dot.m_y - centr.m_y)*(dot.m_y - centr.m_y));
+	m_rad = Distance(centr, dot);// sqrt((dot.m_x - centr.m_x)*(dot.m_x - centr.m_x) + (dot.m_y - centr.m_y)*(dot.m_y - centr.m_y));
 }
 Circle::Circle(const Point& centr, double rad, colour col) : m_centr(centr), Shape(col) {
 	m_rad = rad;
@@ -55,6 +55,11 @@ std::ostream& operator<<(std::ostream& os, const Circle& cir) {
 
 double Circle::GetArea() {
 	return m_rad*m_rad* M_PI;
+}
+
+double Circle::OffsetZero()
+{
+	OffsetZ(m_centr);
 }
 
 
