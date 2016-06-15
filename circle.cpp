@@ -53,10 +53,21 @@ std::ostream& operator<<(std::ostream& os, const Circle& cir) {
 	return os << "Circle: centr - (" << cir.m_centr << "), rad - " << cir.m_rad;
 }
 
-double Circle::GetArea() {
+double Circle::GetArea()const {
 	return m_rad*m_rad* M_PI;
 }
 
+bool Circle::operator==(const Circle& other)const{
+	return ((m_centr==other.m_centr)&&(m_rad==other.m_rad));
+}
+bool Circle::operator==(const Shape& other) const {
+	try {
+		return dynamic_cast<const Circle&>(other) == *this;
+	}
+	catch (std::bad_alloc) {
+		return false;
+	}
+}
 
 
 

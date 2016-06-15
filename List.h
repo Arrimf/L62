@@ -20,6 +20,7 @@ class List {
 		Node(Node&&, Node* = nullptr, Node* = nullptr);
 		void operator=(Node&);
 		Node* GetAdr() { return this; }
+		//static Node& operator++(Node&& obj) {return &obj = obj.m_Next_p;}
 		//friend Node& operator++(Node& obj) { return &obj = obj.m_Next_p; }
 		//friend std::ostream& operator<<(std::ostream&, const Node&);
 		~Node();
@@ -30,13 +31,13 @@ class List {
 	Node Head;
 	Node Tail;
 	size_t m_size;
-	//Node* curN = nullptr;
+	Node* curN = nullptr;
 	
 protected:
 	void AddExistingNodeT(Node&);
 	void AddExistingNodeH(Node&);
 	Node& GetRemoveNode(Node&);
-	
+	inline void SetCur() { curN = Head.m_Next_p; }
 public:
 	List();
 	List(const List&);
@@ -44,7 +45,7 @@ public:
 	~List();
 	
 	//Node& Find(List&, typename T );
-	Node& FindMinSQ(List&);
+	Node& FindMinSQ();
 	void AddToTail(const Shape&);
 	void AddToTail(Shape&&);
 	void AddToHead(const Shape&);
@@ -57,6 +58,8 @@ public:
 	void SortSQ();
 	Node* SetNext(Node*);
 	Node* SetPrev(Node*);
+
+	void operator++();
 	//friend void operator++(Node&);
 	//friend void operator--(Node&);
 	List& operator=(const List&);

@@ -25,10 +25,11 @@ class Shape{
 	virtual Shape* Clone() const = 0;
 	virtual Shape* CloneAdr()  = 0;
 	virtual	std::ostream& osPrint(std::ostream&) const = 0;
-	std::ostream& PrintColour(std::ostream& os) { return os << m_colour; }
+	std::ostream& PrintColour(std::ostream& os)const { return os << m_colour; }
 	
 	virtual void WhereAmI() = 0;
-	virtual double GetArea() = 0;
+	virtual double GetArea()const = 0;
+	virtual bool operator==(const Shape&)const = 0;
 	friend std::ostream& operator<<(std::ostream& , const colour&);
 	
 

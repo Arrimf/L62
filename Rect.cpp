@@ -49,8 +49,7 @@ void Rect::GetAll(double& l, double& r, double& t, double& b)const {
 	t = m_LTop.m_y;
 	b = m_RBottom.m_y;
 }
-double Rect::GetArea()
-{
+double Rect::GetArea()const{
 	return (m_RBottom.m_x - m_LTop.m_x)* (m_RBottom.m_y - m_LTop.m_y);
 }
 ;
@@ -87,4 +86,17 @@ std::ostream& operator<<(std::ostream&os, const Rect& R){
 
 void Rect::WhereAmI() {
 	std::cout << "Now I am in class Rect" << std::endl;
-};
+}
+bool Rect::operator==(const Rect& other)const{
+	return ((m_LTop==other.m_LTop)&&(m_RBottom==other.m_RBottom));
+}
+
+bool Rect::operator==(const Shape& other) const{
+	try {
+		return dynamic_cast<const Rect&>(other) == *this;
+	}
+	catch(std::bad_alloc){
+		return false;
+	}
+}
+

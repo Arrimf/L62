@@ -38,3 +38,4 @@ std::ostream & operator<<(std::ostream& os, const colour & col)
 	//throw gcnew System::NotImplementedException();
 	// TODO: вставьте здесь оператор return
 }
+

@@ -117,19 +117,18 @@ void List::Swap(List& other) {
 }
 
 
-List::Node& List::FindMinSQ(List&) {
+List::Node& List::FindMinSQ() {
 	Node* MinNode = nullptr;
-	Node* RunningNode = nullptr;
-	if (Head.m_Next_p->m_Shape) {
-		MinNode = Head.m_Next_p;
-		RunningNode = MinNode;
+	SetCur();
+	if (curN->m_Shape) {
+		MinNode = curN;
 	}
 	else { return Tail; }
-	while (RunningNode != &Tail){
-		if (RunningNode->m_Shape->GetArea() < MinNode->m_Shape->GetArea()) {
-			MinNode = RunningNode;
+	while (curN != &Tail){
+		if (curN->m_Shape->GetArea() < MinNode->m_Shape->GetArea()) {
+			MinNode = curN;
 		}
-		RunningNode = RunningNode->m_Next_p;
+		++*this;
 	}
 	return *MinNode;
 }
@@ -137,7 +136,7 @@ List::Node& List::FindMinSQ(List&) {
 void List::SortSQ() {
 	List tmp;
 	while (Head.m_Next_p != &Tail){
-		tmp.AddExistingNodeT(GetRemoveNode(FindMinSQ(*this)));
+		tmp.AddExistingNodeT(GetRemoveNode(FindMinSQ()));
 	}
 	Swap(tmp);
 }
@@ -148,6 +147,12 @@ List::Node* List::SetNext(List::Node * N){
 
 List::Node* List::SetPrev(List::Node * N) {
 	return N = N->m_Prev_p;
+}
+
+void List::operator++(){
+	if (curN->m_Next_p) {
+		curN = curN->m_Next_p;
+	}
 }
 
 
@@ -170,6 +175,8 @@ List& List::operator=(const List& other) {
 	List::Node*curSource = other.Head.m_Next_p;
 	while (curDest->m_Next_p && curSource->m_Next_p){
 		*curDest = *curSource;
+		//++*this;
+		
 		SetNext(curDest);// = curDest->m_Next_p;
 		SetNext(curSource);// = curSource->m_Next_p;
 	}

@@ -17,8 +17,9 @@ class Point {
 public:
 
 	explicit Point(double = 0, double = 0);
-
-	bool operator==(const Point&);
+	Point(const Point&) = default;
+	Point(Point&&) = default;
+	
 
 	Point& operator= (const Point&);
 
@@ -30,6 +31,7 @@ public:
 	Point operator- ();
 	Point operator+ ();
 
+	bool operator==(const Point&)const;
 	friend std::ostream& operator<<(std::ostream&, const Point&);
 	//friend std::ofstream& operator<< (std::ofstream&, const Point&);
 

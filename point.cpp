@@ -55,17 +55,15 @@ Point operator- (const Point&l_p, const double delta) {
 	return tmp;
 }
 Point operator- (const Point& l_p, const Point& r_p) {
-	Point tmp((l_p.m_x - r_p.m_x), (l_p.m_y - r_p.m_y));
-	return tmp;
-
+	return std::move(Point((l_p.m_x - r_p.m_x), (l_p.m_y - r_p.m_y)));;
 }
 Point Point::operator-() {
-	return Point(-m_x, -m_y);
+	return std::move(Point(-m_x, -m_y));
 }
 Point Point::operator+() {
 	return *this;
 }
-bool Point::operator==(const Point & other) {
+bool Point::operator==(const Point & other)const {
 	return ((m_x == other.m_x) && (m_y == other.m_y));
 }
 

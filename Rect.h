@@ -35,10 +35,11 @@ public:
 	void Inflate(double delta = 1);
 	void SetAll(double l = 0, double r = 0, double t = 0, double b = 0);
 	void GetAll(double& l, double& r, double& t, double& b)const;
-	virtual double GetArea();
+	virtual double GetArea()const;
 
 	void Rect::WhereAmI();
-	
+	virtual bool operator==(const Rect&)const;
+	virtual bool operator==(const Shape&) const;
 	friend std::ostream& operator<<(std::ostream&, const  Rect&);
 	//Shape* operator*(Rect&) { return static_cast<Shape*>(this); };
 };
