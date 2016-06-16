@@ -22,11 +22,10 @@ class List {
 		Node* GetAdr() { return this; }
 		//static Node& operator++(Node&& obj) {return &obj = obj.m_Next_p;}
 		//friend Node& operator++(Node& obj) { return &obj = obj.m_Next_p; }
-		//friend std::ostream& operator<<(std::ostream&, const Node&);
-		~Node();
+		void Swap(Node&);
 
 		friend class List;
-
+		~Node();
 	};
 	Node Head;
 	Node Tail;
@@ -37,7 +36,9 @@ protected:
 	void AddExistingNodeT(Node&);
 	void AddExistingNodeH(Node&);
 	Node& GetRemoveNode(Node&);
-	inline void SetCur() { curN = Head.m_Next_p; }
+	inline void SetCurH() { curN = Head.m_Next_p; }
+	inline void SetCurT() { curN = Tail.m_Prev_p; }
+	inline void SetCurZ() { curN = nullptr; }
 public:
 	List();
 	List(const List&);
@@ -52,14 +53,21 @@ public:
 	void AddToHead(Shape&&);
 	void RemoveFirst();
 	void RemoveLast();
+
+	template<typename V, typename M>
+		Node& FindMin(   V(*pred)(const  M&, const  M&));
 	//bool FindRemoveCir(const Shape&);
 	//uint32_t FindRemoveAllCir(const Shape&);
 	void Swap(List&);
 	void SortSQ();
+	template<typename V, typename M>
+			void SortP( V(*pred)(const M&, const M&));
+	
 	Node* SetNext(Node*);
 	Node* SetPrev(Node*);
 
 	void operator++();
+	void operator--();
 	//friend void operator++(Node&);
 	//friend void operator--(Node&);
 	List& operator=(const List&);
@@ -72,6 +80,10 @@ public:
 
 };
 
-
+//template<typename V, typename M>
+// Node & List::FindMin(const V &(*)(const M &, const M &))
+//{
+//	// TODO: вставьте здесь оператор return
+//}
 
 

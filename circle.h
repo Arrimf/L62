@@ -28,6 +28,7 @@ public:
 	void Circle::WhereAmI();
 	void Inflate(double = 1);
 	virtual double GetArea()const;
+	virtual double OffsetZero()const;
 
 	bool operator==(const Circle&)const;
 	virtual bool operator==(const Shape& other) const;

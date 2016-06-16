@@ -57,6 +57,10 @@ double Circle::GetArea()const {
 	return m_rad*m_rad* M_PI;
 }
 
+double Circle::OffsetZero()const {
+	return m_centr.OffsetZ();
+}
+
 bool Circle::operator==(const Circle& other)const{
 	return ((m_centr==other.m_centr)&&(m_rad==other.m_rad));
 }

@@ -3,6 +3,14 @@
 //#include <fstream>
 //#include <conio.h>
 
+template<typename M, typename V>const M& MinPred(const M& a, const M& b, V(*pred)(const  M&, const  M&)) {
+	if (pred(a, b) <= 0)
+	{
+		return a;
+	}
+	else { return b; }
+}
+
 List::List():Tail(),Head(){
 	Tail.m_Prev_p = &Head;
 	Head.m_Next_p = &Tail;
@@ -82,6 +90,8 @@ void List::RemoveLast(){
 
 
 
+
+
 void List::Swap(List& other) {
 	//List tmp(*this);
 
@@ -119,7 +129,7 @@ void List::Swap(List& other) {
 
 List::Node& List::FindMinSQ() {
 	Node* MinNode = nullptr;
-	SetCur();
+	SetCurH();
 	if (curN->m_Shape) {
 		MinNode = curN;
 	}
@@ -130,6 +140,7 @@ List::Node& List::FindMinSQ() {
 		}
 		++*this;
 	}
+	SetCurZ();
 	return *MinNode;
 }
 
@@ -140,6 +151,39 @@ void List::SortSQ() {
 	}
 	Swap(tmp);
 }
+
+template<typename V, typename M>
+	List::Node& List::FindMin( V(*pred)(const M& , const M&)){
+		Node* MinNode = nullptr;
+		SetCurH();
+		if (curN->m_Shape) {
+			MinNode = curN;
+		}
+		else { return Tail; }
+		while (curN != &Tail) {
+		
+				MinNode = MinPred<Shape,double>(*MinNode->m_Shape, *curN->m_Shape, pred)
+			//if(pred(*curN->m_Shape,* MinNode->m_Shape)<0){
+			//if (curN->m_Shape->GetArea() < MinNode->m_Shape->GetArea()) {
+				//MinNode = curN;
+		
+			++*this;
+		}
+		SetCurZ();
+		return *MinNode;
+	}
+template<typename V, typename M>
+	void List::SortP( V (*pred)(const M& , const M&)){
+		List tmp;
+		while (Head.m_Next_p != &Tail) {
+			tmp.AddExistingNodeT(GetRemoveNode(FindMin(pred)));
+		}
+		Swap(tmp);
+
+	}
+
+
+
 
 List::Node* List::SetNext(List::Node * N){
 	return N = N->m_Next_p;
@@ -152,6 +196,12 @@ List::Node* List::SetPrev(List::Node * N) {
 void List::operator++(){
 	if (curN->m_Next_p) {
 		curN = curN->m_Next_p;
+	}
+}
+
+void List::operator--(){
+	if (curN->m_Prev_p) {
+		curN = curN->m_Prev_p;
 	}
 }
 

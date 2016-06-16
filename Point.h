@@ -16,7 +16,7 @@ class Point {
 
 public:
 	friend double Distance(const Point&, const Point&);
-	friend double OffsetZ(const Point&);
+	double OffsetZ()const;
 	explicit Point(double = 0, double = 0);
 	Point(const Point&) = default;
 	Point(Point&&) = default;

@@ -1,8 +1,6 @@
 #include "List.h"
 
-template<typename T>const T& min(const T& a, const T& b) {
-	return (a < b) ? a : b;
-}
+
 
 List::Node::Node(const Shape* Obj, Node* prev, Node* next) {
 	m_Prev_p = prev;
@@ -72,6 +70,12 @@ std::ostream& operator<<(std::ostream& os, const List::Node& N) {
 
 
 
+
+void List::Node::Swap(Node& other){
+	Shape* tmp = this->m_Shape;
+	m_Shape = other.m_Shape;
+	other.m_Shape = tmp;
+}
 
 List::Node::~Node() {
 	//if (this) {

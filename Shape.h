@@ -29,6 +29,9 @@ class Shape{
 	
 	virtual void WhereAmI() = 0;
 	virtual double GetArea()const = 0;
+	virtual double OffsetZero()const = 0;
+	static double CompSize(const Shape&, const Shape&);
+
 	virtual bool operator==(const Shape&)const = 0;
 	friend std::ostream& operator<<(std::ostream& , const colour&);
 	

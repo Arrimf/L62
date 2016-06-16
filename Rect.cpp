@@ -1,6 +1,6 @@
 #include "circle.h"
 #include "Rect.h"
-//#include "Point.h"
+#include "Point.h"
 
 Rect::Rect(double l, double r, double t, double b, colour col):m_LTop(l, t),m_RBottom(r,b), Shape(col) {
 	normolize();
@@ -52,19 +52,18 @@ void Rect::GetAll(double& l, double& r, double& t, double& b)const {
 double Rect::GetArea()const{
 	return (m_RBottom.m_x - m_LTop.m_x)* (m_RBottom.m_y - m_LTop.m_y);
 }
-double Rect::OffsetZero()
-{	
-	return OffsetZ(GetCentr());
+double Rect::OffsetZero()const {
+	return GetCentr().OffsetZ();
 }
-;
+
 void Rect::GetAll(double *coord)const {
 	coord[0] = m_LTop.m_x;
 	coord[1] = m_RBottom.m_x;
 	coord[2] = m_RBottom.m_y;
 	coord[3] = m_LTop.m_y;
 }
-Point Rect::GetCentr(){
-	return Point((m_RBottom.m_x - m_LTop.m_x),(m_RBottom.m_y - m_LTop.m_y));
+Point Rect::GetCentr()const {
+	return std::move(Point((m_RBottom.m_x - m_LTop.m_x),(m_RBottom.m_y - m_LTop.m_y)));
 }
 Rect BoundingRect(Rect R1, Rect R2) {
 	double c1[4], c2[4];

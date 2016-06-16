@@ -25,19 +25,22 @@ public:
 
 	virtual ~Rect() { std::cout << "Now I am in Rect's destructor!" << std::endl; };
 
-	inline virtual  Shape* Clone()const { return new Rect(*this); }
+	inline virtual Shape* Clone()const { return new Rect(*this); }
 	inline virtual Shape* CloneAdr() { return new/*std::move*/Rect(std::move(*this));}
-	//inline virtual  const Shape* Clone() const { return this; };
+	
 	inline virtual	std::ostream& osPrint(std::ostream& os) const { return os <<*this ; }
 
 	void Inflate(double  dl, double  dr, double  dt, double  db);
 	void Inflate(double dx = 1, double dy = 1);
-	void Inflate(double delta = 1);
+	virtual void Inflate(double delta = 1);
 	void SetAll(double l = 0, double r = 0, double t = 0, double b = 0);
 	void GetAll(double& l, double& r, double& t, double& b)const;
-	virtual double GetArea()const;
 
-	void Rect::WhereAmI();
+	virtual double GetArea()const;
+	virtual double OffsetZero()const;
+	Point GetCentr()const;
+
+	virtual void Rect::WhereAmI();
 	virtual bool operator==(const Rect&)const;
 	virtual bool operator==(const Shape&) const;
 	friend std::ostream& operator<<(std::ostream&, const  Rect&);

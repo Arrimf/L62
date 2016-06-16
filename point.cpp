@@ -53,9 +53,8 @@ Point operator+ (const double delta, const Point& r_p) {
 double Distance(const Point &P1, const  Point &P2){
 	return sqrt((P2.m_x - P1.m_x)*(P2.m_x - P1.m_x) + (P2.m_y - P1.m_y)*(P2.m_y - P1.m_y));
 }
-double OffsetZ(const Point &Poi)
-{
-	return sqrt((Poi.m_x*Poi.m_x) + (Poi.m_y*Poi.m_y));
+double Point::OffsetZ()const{
+	return sqrt((m_x*m_x) + (m_y*m_y));
 }
 Point operator- (const Point&l_p, const double delta) {
 	Point tmp((l_p.m_x - delta), (l_p.m_y - delta));

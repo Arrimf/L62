@@ -100,9 +100,12 @@ void main() {
 	List L3(std::move(L2));
 	std::cout << L2;
 	std::cout << L3;
+	L3.SortP(Shape::CompSize);
+
 	_SP
 	delete pc;
 	_SP
+
 
 
 }
