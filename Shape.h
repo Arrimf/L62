@@ -6,7 +6,15 @@
 enum class colour:std::uint8_t{BLANC = 0, RED, GREEN, BLUE};
 /*public:
 	friend std::ostream& operator<<(std::ostream&,colour&) {};
-}*/;
+}*/
+
+//template<typename M>const M& MinPred(const M& a, const M& b, double(*pred)(const  Shape&, const  Shape&)) {
+//	if (pred(a, b) <= 0)
+//	{
+//		return a;
+//	}
+//	else { return b; }
+//}
 
 class Shape{
 	

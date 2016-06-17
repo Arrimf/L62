@@ -6,6 +6,7 @@
 //#include <iostream>
 //#include <fstream>
 
+
 class List {
 	class Node {
 	public:
@@ -54,14 +55,20 @@ public:
 	void RemoveFirst();
 	void RemoveLast();
 
-	template<typename V, typename M>
-		Node& FindMin(   V(*pred)(const  M&, const  M&));
+	//template<typename V, typename M>
+	//	Node& FindMin(   V(*pred)(const  M&, const  M&));
 	//bool FindRemoveCir(const Shape&);
 	//uint32_t FindRemoveAllCir(const Shape&);
+	template<typename M, typename V>
+		const M& MinPred(const M& a, const M& b, V(*pred)(const  M&, const  M&));
+
+
 	void Swap(List&);
 	void SortSQ();
-	template<typename V, typename M>
-			void SortP( V(*pred)(const M&, const M&));
+	List::Node & FindMin(double(*pred)(const Shape &, const Shape &));
+	//template<typename V, typename M>
+	
+	void SortP(double(*pred)(const Shape&, const Shape&));
 	
 	Node* SetNext(Node*);
 	Node* SetPrev(Node*);
@@ -86,4 +93,12 @@ public:
 //	// TODO: вставьте здесь оператор return
 //}
 
-
+template<typename M, typename V>
+	const M & List::MinPred(const M & a, const M & b, V(*pred)(const M &, const M &))
+		{
+			if (pred(a, b) <= 0)
+			{
+				return a;
+			}
+			else { return b; }
+		}
