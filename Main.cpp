@@ -93,17 +93,20 @@ void main() {
 	List l;
 	Circle* pc = new Circle(2,5);
 	l.AddToTail(*pc);
-	l.AddToTail(Circle(1, 1));
+	delete pc;	
 	l.AddToTail(Rect(3, 5, 2, 6));
+	l.AddToTail(Circle(1, 1));
+
 	List L2(l);
 
 	List L3(std::move(L2));
 	std::cout << L2;
 	std::cout << L3;
-	L3.SortP(Shape::CompSize);
-
 	_SP
-	delete pc;
+ 	L3.SortP(&Shape::GetArea);
+	std::cout << L3;
+	_SP
+	
 	_SP
 
 

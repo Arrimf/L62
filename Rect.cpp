@@ -106,3 +106,14 @@ bool Rect::operator==(const Shape& other) const{
 	}
 }
 
+//Shape & Rect::operator=(const Shape & other){
+//	try {
+//		*this = dynamic_cast<const Rect&>(other);
+//	}
+//	catch (std::bad_alloc) {
+//		this->~Rect();
+//		new(this)Shape*(other.Clone());
+//	}
+//	return *this;
+//}
+

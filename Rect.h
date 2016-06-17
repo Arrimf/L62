@@ -26,7 +26,7 @@ public:
 	virtual ~Rect() { std::cout << "Now I am in Rect's destructor!" << std::endl; };
 
 	inline virtual Shape* Clone()const { return new Rect(*this); }
-	inline virtual Shape* CloneAdr() { return new/*std::move*/Rect(std::move(*this));}
+	inline virtual Shape* CloneAdr() const{ return new/*std::move*/Rect(std::move(*this));}
 	
 	inline virtual	std::ostream& osPrint(std::ostream& os) const { return os <<*this ; }
 
@@ -43,6 +43,8 @@ public:
 	virtual void Rect::WhereAmI();
 	virtual bool operator==(const Rect&)const;
 	virtual bool operator==(const Shape&) const;
+	//virtual Shape& operator=(const Shape&);
+	//Rect& operator=(const Rect&) = default;
 	friend std::ostream& operator<<(std::ostream&, const  Rect&);
 	//Shape* operator*(Rect&) { return static_cast<Shape*>(this); };
 };

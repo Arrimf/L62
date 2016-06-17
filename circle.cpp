@@ -64,6 +64,7 @@ double Circle::OffsetZero()const {
 bool Circle::operator==(const Circle& other)const{
 	return ((m_centr==other.m_centr)&&(m_rad==other.m_rad));
 }
+
 bool Circle::operator==(const Shape& other) const {
 	try {
 		return dynamic_cast<const Circle&>(other) == *this;
@@ -72,7 +73,16 @@ bool Circle::operator==(const Shape& other) const {
 		return false;
 	}
 }
-
+//Shape& Circle::operator=(const Shape& other) {
+//	try {
+//		*this = dynamic_cast<const Circle&>(other);
+//	}
+//	catch (std::bad_alloc) {
+//		this->~Circle();
+//		new(this)Shape*(other.Clone());
+//	}
+//	return *this;
+//}
 
 
 

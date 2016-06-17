@@ -35,11 +35,12 @@ std::ostream & operator<<(std::ostream& os, const colour & col)
 		break;
 	}
 	return os;
-	//throw gcnew System::NotImplementedException();
-	// TODO: вставьте здесь оператор return
+	
 }
 
 double Shape::CompSize(const Shape&S1, const Shape&S2)
 {
 	return S1.GetArea() - S2.GetArea();
 }
+
+

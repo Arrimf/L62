@@ -65,10 +65,11 @@ public:
 
 	void Swap(List&);
 	void SortSQ();
-	List::Node & FindMin(double(*pred)(const Shape &, const Shape &));
+
+	List::Node & FindMin(double(Shape::*)()const);
 	//template<typename V, typename M>
 	
-	void SortP(double(*pred)(const Shape&, const Shape&));
+	void SortP(double (Shape::*)()const);
 	
 	Node* SetNext(Node*);
 	Node* SetPrev(Node*);
@@ -84,7 +85,7 @@ public:
 	friend std::ostream& operator<<(std::ostream&, const List&);
 	//friend std::ofstream& operator<<(std::ofstream&, const List&);
 	//friend std::ifstream& operator >> (std::ifstream&, List&);
-
+	
 };
 
 //template<typename V, typename M>

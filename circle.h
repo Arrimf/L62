@@ -23,7 +23,7 @@ public:
 
 	//inline virtual  Shape* Clone() { return new Circle(*this); };
 	inline virtual   Shape* Clone() const { return new Circle(*this); }
-	inline virtual Shape* CloneAdr() { return new/*std::move*/Circle(std::move(*this)); }
+	inline virtual Shape* CloneAdr() const { return new/*std::move*/Circle(std::move(*this)); }
 	
 	void Circle::WhereAmI();
 	void Inflate(double = 1);
@@ -31,7 +31,9 @@ public:
 	virtual double OffsetZero()const;
 
 	bool operator==(const Circle&)const;
-	virtual bool operator==(const Shape& other) const;
+	virtual bool operator==(const Shape&) const;
+	//virtual Shape& operator=(const Shape&);
+	//Circle& operator=(const Circle&) = default;
 	inline virtual	 std::ostream& osPrint(std::ostream& os) const { return os << *this; }
 	friend std::ostream& operator<<(std::ostream&, const  Circle&);
 

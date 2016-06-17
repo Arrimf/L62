@@ -147,7 +147,8 @@ void List::SortSQ() {
 }
 
 //template<typename V, typename M>
-	List::Node& List::FindMin(double (*pred)(const Shape& , const Shape&)){
+
+	List::Node& List::FindMin(double (Shape::* pred)()const){
 		Node* MinNode = nullptr;
 		SetCurH();
 		if (curN->m_Shape) {
@@ -155,8 +156,11 @@ void List::SortSQ() {
 		}
 		else { return Tail; }
 		while (curN != &Tail) {
-		
-			MinNode = pred(*MinNode->m_Shape, *curN->m_Shape, pred);
+			if ( Shape::Comparator(*MinNode->m_Shape, *curN->m_Shape, pred) > 0)	{
+				MinNode = curN;
+			}
+				
+			
 			//if(pred(*curN->m_Shape,* MinNode->m_Shape)<0){
 			//if (curN->m_Shape->GetArea() < MinNode->m_Shape->GetArea()) {
 				//MinNode = curN;
@@ -166,8 +170,9 @@ void List::SortSQ() {
 		SetCurZ();
 		return *MinNode;
 	}
+
 //template<typename V, typename M>
-	void List::SortP( double(*pred)(const Shape& , const Shape&)){
+	void List::SortP(double (Shape::* pred)()const){
 		List tmp;
 		while (Head.m_Next_p != &Tail) {
 			tmp.AddExistingNodeT(GetRemoveNode(FindMin(pred)));
