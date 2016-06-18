@@ -147,6 +147,19 @@ void List::SortSQ() {
 }
 
 //template<typename V, typename M>
+bool List::FindRemoveShape(const Shape & obj) {
+	SetCurH();
+	//List::Node* curN = Head.m_Next_p;
+	while (curN != &Tail) {
+		if (*const_cast<const Shape*>(curN->m_Shape) == obj) {
+			delete curN;
+			m_size--;
+			return true;
+		}
+		curN = curN->m_Next_p;
+	}
+	return false;
+}
 
 	List::Node& List::FindMin(double (Shape::* pred)()const){
 		Node* MinNode = nullptr;
@@ -262,10 +275,17 @@ std::ostream& operator<<(std::ostream& os, const List& l) {
 	if (l.Head.m_Next_p == &l.Tail) { os << "List is empty" << std::endl; }
 	else {
 		List::Node* curN = l.Head.m_Next_p;
+		
 		while (curN != &l.Tail) {
 			if (curN->m_Shape) {
 				os << *curN << std::endl; //*curN->m_Shape<<endl;
 				//std::cout << std::endl;
+				//try {
+				//	dynamic_cast<std::ofstream&>(os) << curN->m_Shape << std::endl;
+				//}
+				//catch (std::bad_cast) {
+				//	os << curN->m_Shape << std::endl;
+				//}
 			}
 			curN = curN->m_Next_p;
 		}

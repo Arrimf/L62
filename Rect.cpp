@@ -94,14 +94,14 @@ void Rect::WhereAmI() {
 	std::cout << "Now I am in class Rect" << std::endl;
 }
 bool Rect::operator==(const Rect& other)const{
-	return ((m_LTop==other.m_LTop)&&(m_RBottom==other.m_RBottom));
+	return (m_LTop==other.m_LTop)&&(m_RBottom==other.m_RBottom) && (Shape::operator==(other));
 }
 
 bool Rect::operator==(const Shape& other) const{
 	try {
 		return dynamic_cast<const Rect&>(other) == *this;
 	}
-	catch(std::bad_alloc){
+	catch(std::bad_cast){
 		return false;
 	}
 }

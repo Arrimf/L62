@@ -44,8 +44,8 @@ class Shape{
 
 	static double CompSize(const Shape&, const Shape&);
 	//const Shape* operator->() { return this; }
-	virtual bool operator==(const Shape&)const = 0;
-	//virtual Shape& operator=(const Shape&) = 0;
+	virtual bool operator==(const Shape&)const;
+	//virtual Shape& operator=(const Shape&) 0;
 	friend std::ostream& operator<<(std::ostream& , const colour&);
 	
 
@@ -62,7 +62,7 @@ class Shape{
 //}
 
  template<typename V, typename M>
-	  V Shape::Comparator(const M& m1, V(/*typename*/ M::*pred )() const) {
+	  V Shape::Comparator(const M& m1, V( M::*pred )() const) {
 			 //double x = 0;
 			 //return x = m1.*pred();
 			 return (this->*pred)() - (m1.*pred)();

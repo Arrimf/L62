@@ -71,16 +71,16 @@ public:
 	
 	void SortP(double (Shape::*pred)()const);
 	
-	Node* SetNext(Node*);
-	Node* SetPrev(Node*);
+	inline Node* SetNext(Node*);
+	inline Node* SetPrev(Node*);
 
-	void operator++();
-	void operator--();
+	inline void operator++();// {if (curN->m_Next_p) { curN = curN->m_Next_p; }}
+	inline void operator--();// {	if (curN->m_Prev_p) { curN = curN->m_Prev_p; }}
 	//friend void operator++(Node&);
 	//friend void operator--(Node&);
 	List& operator=(const List&);
 	
-
+	bool FindRemoveShape(const Shape&);
 	friend std::ostream& operator<<(std::ostream&, const Node&);
 	friend std::ostream& operator<<(std::ostream&, const List&);
 	//friend std::ofstream& operator<<(std::ofstream&, const List&);

@@ -43,4 +43,11 @@ double Shape::CompSize(const Shape&S1, const Shape&S2)
 	return S1.GetArea() - S2.GetArea();
 }
 
+bool Shape::operator==(const Shape &other) const
+{
+	return m_colour == other.m_colour;
+}
+
+
+
 

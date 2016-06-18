@@ -62,14 +62,14 @@ double Circle::OffsetZero()const {
 }
 
 bool Circle::operator==(const Circle& other)const{
-	return ((m_centr==other.m_centr)&&(m_rad==other.m_rad));
+	return ((m_centr==other.m_centr)&&(m_rad==other.m_rad))&&(Shape::operator==(other));
 }
 
 bool Circle::operator==(const Shape& other) const {
 	try {
 		return dynamic_cast<const Circle&>(other) == *this;
 	}
-	catch (std::bad_alloc) {
+	catch (std::bad_cast) {
 		return false;
 	}
 }

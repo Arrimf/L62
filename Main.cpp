@@ -94,8 +94,11 @@ void main() {
 	Circle* pc = new Circle(2,5);
 	l.AddToTail(*pc);
 	delete pc;	
+	l.AddToTail(Circle(4, 1, 1, colour::BLUE));
 	l.AddToTail(Rect(3, 5, 2, 6));
+
 	l.AddToTail(Circle(1, 1));
+	l.AddToHead(Rect(3, 5, 1, 3, colour::GREEN));
 
 	List L2(l);
 
@@ -104,6 +107,11 @@ void main() {
 	std::cout << L3;
 	_SP
  	L3.SortP(&Shape::GetArea);
+	//L3.SortP([&Shape::](Shape:: colour col)->double {return colour};
+	L3.FindRemoveShape(Circle(1, 1/*,0,colour::GREEN*/));
+	std::cout << L3;
+	_SP
+	L3.SortP(&Shape::OffsetZero);
 	std::cout << L3;
 	_SP
 	
