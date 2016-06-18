@@ -39,11 +39,11 @@ class Shape{
 	virtual double GetArea()const = 0;
 	virtual double OffsetZero()const = 0;
 	template<typename V, typename M> 
-		static V Comparator(const M&, const M&,  V(M::* )()const);
+		 V Comparator( const M&,  V(M::*pred )()const);
 		
 
 	static double CompSize(const Shape&, const Shape&);
-	const Shape* operator->() { return this; }
+	//const Shape* operator->() { return this; }
 	virtual bool operator==(const Shape&)const = 0;
 	//virtual Shape& operator=(const Shape&) = 0;
 	friend std::ostream& operator<<(std::ostream& , const colour&);
@@ -62,9 +62,9 @@ class Shape{
 //}
 
  template<typename V, typename M>
-  V Shape::Comparator(const M& m1, const M& m2, V( M::*pred )() const)
- {
-	 double x = 0;
-	 return x = m1*pred();
-	 //return  (m1.*pred()) - (m2.*pred());
- }
+	  V Shape::Comparator(const M& m1, V(/*typename*/ M::*pred )() const) {
+			 //double x = 0;
+			 //return x = m1.*pred();
+			 return (this->*pred)() - (m1.*pred)();
+			// return  (m1.*pred()) - (m2.*pred());
+		 }

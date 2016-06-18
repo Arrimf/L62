@@ -66,10 +66,10 @@ public:
 	void Swap(List&);
 	void SortSQ();
 
-	List::Node & FindMin(double(Shape::*)()const);
+	List::Node & FindMin(double(Shape::*pred)()const);
 	//template<typename V, typename M>
 	
-	void SortP(double (Shape::*)()const);
+	void SortP(double (Shape::*pred)()const);
 	
 	Node* SetNext(Node*);
 	Node* SetPrev(Node*);

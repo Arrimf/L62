@@ -156,7 +156,7 @@ void List::SortSQ() {
 		}
 		else { return Tail; }
 		while (curN != &Tail) {
-			if ( Shape::Comparator(*MinNode->m_Shape, *curN->m_Shape, pred) > 0)	{
+			if (MinNode->m_Shape->Comparator( *curN->m_Shape, pred) > 0)	{
 				MinNode = curN;
 			}
 				
